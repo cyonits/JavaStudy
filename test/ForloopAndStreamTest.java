@@ -1,7 +1,5 @@
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -12,13 +10,14 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@TestMethodOrder(MethodOrderer.MethodName.class)
 public class ForloopAndStreamTest {
 
     static List<Integer> nums = new ArrayList<>();
     Integer sum;
 
-    @BeforeEach
-    public void makeNumList(){
+    @BeforeAll
+    public static void makeNumList(){
         nums .clear();
         for (int i = 0; i < 100000000; i++) {
             nums.add(i);
@@ -31,7 +30,11 @@ public class ForloopAndStreamTest {
     }
 
     @Test
-    public void ForloopTest() {
+    public void a_init(){
+    }
+
+    @Test
+    public void b_ForloopTest() {
         long startTime = System.currentTimeMillis();
 
         for (int i = 0; i < nums.size(); i++) {
@@ -47,7 +50,7 @@ public class ForloopAndStreamTest {
     }
 
     @Test
-    public void ForeachTest() {
+    public void c_ForeachTest() {
         long startTime = System.currentTimeMillis();
 
         for (int i: nums) {
@@ -63,7 +66,7 @@ public class ForloopAndStreamTest {
     }
 
     @Test
-    public void StreamTest() {
+    public void d_StreamTest() {
         long startTime = System.currentTimeMillis();
 
         nums.forEach(num -> {
@@ -79,7 +82,7 @@ public class ForloopAndStreamTest {
     }
 
     @Test
-    public void IntStreamTest() {
+    public void e_IntStreamTest() {
         long startTime = System.currentTimeMillis();
 
         IntStream.range(0, nums.size()).forEach(i ->{
