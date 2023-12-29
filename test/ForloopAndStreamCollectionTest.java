@@ -1,9 +1,7 @@
 
 import org.junit.jupiter.api.*;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
@@ -12,14 +10,14 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestMethodOrder(MethodOrderer.MethodName.class)
-public class ForloopAndStreamTest {
+public class ForloopAndStreamCollectionTest {
 
     static List<Integer> nums = new ArrayList<>();
 
     @BeforeAll
     public static void makeNumList(){
         nums .clear();
-        for (int i = 0; i < 5000000; i++) {
+        for (int i = 0; i < 50000000; i++) {
             nums.add(i);
         }
     }
